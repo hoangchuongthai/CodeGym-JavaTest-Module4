@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${pageTitle}">Khuyến mãi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell py-4 py-lg-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9">
+                <section class="hero-card compact-hero mb-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                        <div>
+                            <span class="badge text-bg-light badge-soft mb-3" th:text="${mode == 'create' ? 'Create Promotion' : 'Edit Promotion'}"></span>
+                            <h1 class="display-title mb-2" th:text="${pageTitle}">Khuyến mãi</h1>
+                            <p class="hero-text mb-0">Nhập đầy đủ thông tin chương trình khuyến mãi. Hệ thống sẽ kiểm tra dữ liệu trước khi lưu.</p>
+                        </div>
+                        <a class="btn btn-outline-light btn-lg px-4" th:href="@{/promotions}">← Quay lại danh sách</a>
+                    </div>
+                </section>
+
+                <section class="glass-card">
+                    <form th:action="${mode == 'create'} ? @{/promotions/create} : @{'/promotions/edit/' + ${promotionForm.id}}"
+                          th:object="${promotionForm}" method="post" novalidate>
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <label class="form-label">Tiêu đề <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-lg" th:field="*{title}" placeholder="Nhập tiêu đề chương trình khuyến mãi">
+                                <div class="invalid-feedback d-block" th:errors="*{title}"></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Thời gian bắt đầu <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control form-control-lg" th:field="*{startDate}">
+                                <div class="invalid-feedback d-block" th:errors="*{startDate}"></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Thời gian kết thúc <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control form-control-lg" th:field="*{endDate}">
+                                <div class="invalid-feedback d-block" th:errors="*{endDate}"></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Mức giảm giá <span class="text-danger">*</span></label>
+                                <div class="input-group input-group-lg">
+                                    <input type="number" step="0.01" class="form-control" th:field="*{discountAmount}" placeholder="Nhập mức giảm giá">
+                                    <span class="input-group-text">VNĐ</span>
+                                </div>
+                                <div class="invalid-feedback d-block" th:errors="*{discountAmount}"></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Gợi ý nhanh</label>
+                                <div class="tips-card h-100">
+                                    <ul class="mb-0 ps-3 small text-muted">
+                                        <li>Ngày bắt đầu phải lớn hơn ngày hiện tại.</li>
+                                        <li>Ngày kết thúc phải cách ngày bắt đầu ít nhất 1 ngày.</li>
+                                        <li>Mức giảm giá phải lớn hơn 10.000 VNĐ.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">Chi tiết <span class="text-danger">*</span></label>
+                                <textarea class="form-control form-control-lg" th:field="*{details}" rows="6" placeholder="Mô tả nội dung khuyến mãi"></textarea>
+                                <div class="invalid-feedback d-block" th:errors="*{details}"></div>
+                            </div>
+                        </div>
+
+                        <div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger rounded-4 mt-4 mb-0">
+                            <div th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2 mt-4 pt-2">
+                            <button type="submit" class="btn btn-primary btn-lg px-4" th:text="${mode == 'create' ? 'Thêm mới' : 'Cập nhật'}"></button>
+                            <a class="btn btn-outline-secondary btn-lg px-4" th:href="@{/promotions}">Hủy</a>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
