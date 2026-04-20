@@ -1,0 +1,78 @@
+create database promotiondb;
+
+USE promotiondb;
+INSERT INTO promotions
+(title, start_date, end_date, discount_amount, details, created_at, updated_at)
+VALUES
+
+('Khuyến mãi Tết 2027',
+ '2027-01-20',
+ '2027-01-28',
+ 30000,
+ 'Giảm giá vé toàn hệ thống dịp Tết',
+ NOW(), NOW()),
+
+('Khuyến mãi Valentine',
+ '2027-02-10',
+ '2027-02-15',
+ 50000,
+ 'Ưu đãi cho các cặp đôi',
+ NOW(), NOW()),
+
+('Khuyến mãi Sinh Nhật Rạp',
+ '2027-04-20',
+ '2027-04-25',
+ 25000,
+ 'Tri ân khách hàng',
+ NOW(), NOW()),
+
+('Khuyến mãi 30/4 - 1/5',
+ '2027-04-28',
+ '2027-05-03',
+ 20000,
+ 'Ưu đãi ngày lễ',
+ NOW(), NOW()),
+
+('Khuyến mãi Mùa Hè',
+ '2027-06-01',
+ '2027-06-10',
+ 40000,
+ 'Giảm giá cho học sinh sinh viên',
+ NOW(), NOW()),
+
+('Khuyến mãi Thành Viên',
+ '2027-08-01',
+ '2027-08-31',
+ 18000,
+ 'Ưu đãi khách hàng thân thiết',
+ NOW(), NOW()),
+
+('Khuyến mãi Trung Thu',
+ '2027-09-10',
+ '2027-09-15',
+ 22000,
+ 'Ưu đãi vé gia đình',
+ NOW(), NOW()),
+
+('Khuyến mãi Ra Mắt Phim Mới',
+ '2027-10-05',
+ '2027-10-08',
+ 27000,
+ 'Khuyến mãi phim bom tấn',
+ NOW(), NOW()),
+
+('Khuyến mãi Noel',
+ '2027-12-20',
+ '2027-12-26',
+ 35000,
+ 'Giảm giá dịp Giáng Sinh',
+ NOW(), NOW()),
+
+('Test Search 99999',
+ '2027-11-01',
+ '2027-11-05',
+ 99999,
+ 'Dữ liệu test tìm kiếm',
+ NOW(), NOW());
+ 
+ SELECT * FROM promotions;
